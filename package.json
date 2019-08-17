@@ -4,7 +4,8 @@
   "description": "This is a yelpCamp application.",
   "main": "yelpcampv1.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node yelpcampv1.js"
   },
   "author": "AJ",
   "license": "ISC",

@@ -9,7 +9,17 @@ var express = require("express"),
     LocalStrategy = require("passport-local"),
     methodOverride = require("method-override"),
     flash = require("connect-flash"),
-    User = require("./models/user");
+    User = require("./models/user"),
+    port = process.env.PORT || 8000;
+
+mongoose.connect("mongodb+srv://ashish:ashish@cluster0-svtzr.mongodb.net/test?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useCreateIndex: true
+}).then(() => {
+    console.log("Connected to db");
+}).catch(err => {
+    console.log("Errorrrr!!", err.message);
+}); 
 
 var commentRoutes = require("./routes/comments"),
     CampgroundRoutes = require("./routes/campgrounds"),
@@ -29,7 +39,8 @@ const options = {
     socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
     family: 4 // Use IPv4, skip trying IPv6
     };
-mongoose.connect("mongodb://localhost:27017/yelpcamp", options);  
+// mongoose.connect("mongodb://localhost:27017/yelpcamp", options);  
+ 
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -58,6 +69,6 @@ app.use(indexRoutes);
 app.use(CampgroundRoutes);
 app.use(commentRoutes);
 
-app.listen(8000, function(){
-    console.log("Server at port 8080");
+app.listen(port, function(){
+    console.log("Server Started!!");
 })
